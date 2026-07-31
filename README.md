@@ -1,0 +1,1 @@
+![MRI brain scan banner](assets/MRI_brain_scan.gif)
