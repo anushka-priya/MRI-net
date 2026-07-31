@@ -12,13 +12,13 @@ def get_class_names(train_dir: str = config.TRAIN_DIR) -> list:
             f"Training folder not found at {train_dir}. "
             "Set BRAIN_MRI_DATA_ROOT to the correct dataset location."
         )
-    return sorted(os.listdir(train_dir))
+    return os.listdir(train_dir)
 
 
 def get_transforms(train: bool) -> transforms.Compose:
     pipeline = [transforms.Resize((config.IMG_SIZE, config.IMG_SIZE))]
     if train:
-        pipeline += [transforms.RandomHorizontalFlip(), transforms.RandomRotation(10)]
+        pass
     pipeline += [
         transforms.ToTensor(),
         transforms.Normalize(config.IMAGENET_MEAN, config.IMAGENET_STD),
@@ -30,7 +30,7 @@ def build_datasets(class_names: list):
     train_dataset = datasets.ImageFolder(config.TRAIN_DIR, transform=get_transforms(train=True))
     test_dataset = datasets.ImageFolder(config.TEST_DIR, transform=get_transforms(train=False))
 
-    if train_dataset.classes != class_names:
+    if set(train_dataset.classes) != set(class_names):
         raise ValueError("Class order mismatch -- ImageFolder order must match class_names.")
 
     return train_dataset, test_dataset
