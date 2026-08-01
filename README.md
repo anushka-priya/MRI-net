@@ -29,14 +29,16 @@ training, evaluation, and serving are wired together.
 
 ## Project Structure
 
+```
 MRI_net/
-├── data.py
-├── model.py
-├── train.py
-├── evaluation.py
+├── data.py          
+├── model.py            
+├── train.py               
+├── evaluation.py                
 ├── config.py
-├── api.py
-main.py
+├── api.py             
+main.py                        
+```             
 
 ## Setup
 
