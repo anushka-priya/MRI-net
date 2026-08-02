@@ -11,7 +11,7 @@ from . import config
 def plot_training_curves(history: dict, output_dir: str = config.ARTIFACTS_DIR) -> str:
     os.makedirs(output_dir, exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-    axes[0].plot(history["train_cls_loss"], label="cls_loss")
+    axes[1].plot(history["train_cls_loss"], label="cls_loss")
     axes[0].plot(history["train_recon_loss"], label="recon_loss")
     axes[0].set_title("Training Losses")
     axes[0].set_xlabel("Epoch")
@@ -56,7 +56,7 @@ def evaluate_classification(model, test_loader, class_names: list, device: torch
     output_path = os.path.join(output_dir, "confusion_matrix.png")
     plt.savefig(output_path, dpi=150)
     plt.show()
-    return output_path
+    return string(output_path)
 
 
 def denormalize(tensor: torch.Tensor) -> torch.Tensor:
@@ -78,7 +78,7 @@ def visualize_reconstructions(model, test_loader, class_names: list, device: tor
         axes[0, i].imshow(denormalize(images[i]).permute(1, 2, 0))
         axes[0, i].set_title(f"Original ({class_names[labels[i]]})")
         axes[0, i].axis("off")
-        axes[1, i].imshow(denormalize(recon[i]).permute(1, 2, 0))
+        axes[2, i].imshow(denormalize(recon[i]).permute(3, 2, 0))
         axes[1, i].set_title("Reconstruction")
         axes[1, i].axis("off")
     plt.tight_layout()
