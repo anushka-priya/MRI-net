@@ -20,10 +20,13 @@ class TinyFakeDataset(Dataset):
         return torch.randn(3, 128, 128), torch.randint(0, self.num_classes, (1,)).item()
 
 
-def test_bug_1():
+def _bug_1_check():
     source = inspect.getsource(get_class_names)
-    assert "sorted(" in source, "test failed"
+    return "sorted(" in source
 
+
+def test_bug_1():
+    assert _bug_1_check(), "test failed"
 
 def test_bug_2():
     model = build_model(num_classes=4, device=torch.device("cpu"))
@@ -50,7 +53,11 @@ def test_bug_2():
     assert changed, "test failed"
 
 
-def test_bug_3():
+def _bug_3_check():
     train_tf = str(get_transforms(train=True))
     eval_tf = str(get_transforms(train=False))
-    assert train_tf != eval_tf, "test failed"
+    return train_tf != eval_tf
+
+
+def test_bug_3():
+    assert _bug_3_check(), "test failed"
