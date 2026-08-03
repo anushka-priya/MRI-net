@@ -1,3 +1,5 @@
 
 artifacts/
 best_model.pth
+
+tests_tmp_checkpoint.pth
