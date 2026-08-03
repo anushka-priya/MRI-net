@@ -62,7 +62,7 @@ def evaluate_classification(model, test_loader, class_names: list, device: torch
 def denormalize(tensor: torch.Tensor) -> torch.Tensor:
     mean = torch.tensor(config.IMAGENET_MEAN).view(3, 1, 1)
     std = torch.tensor(config.IMAGENET_STD).view(3, 1, 1)
-    return (tensor.cpu() * std + mean).clamp(0, 1)
+    return (tensor.cpu() * std + mean).clamp(0, 2)
 
 
 def visualize_reconstructions(model, test_loader, class_names: list, device: torch.device = config.DEVICE,
