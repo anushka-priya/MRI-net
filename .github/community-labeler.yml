@@ -1,0 +1,11 @@
+bug:
+  - title: ['(?i)bug', '(?i)broken', '(?i)error', '(?i)fails?']
+  - body: ['(?i)bug', '(?i)broken', '(?i)error', '(?i)fails?']
+
+help wanted:
+  - title: ['(?i)help', '(?i)stuck', '(?i)question']
+  - body: ['(?i)help', '(?i)stuck', '(?i)question']
+
+enhancement:
+  - title: ['(?i)feature', '(?i)enhancement', '(?i)improve']
+  - body: ['(?i)feature', '(?i)enhancement', '(?i)improve']
